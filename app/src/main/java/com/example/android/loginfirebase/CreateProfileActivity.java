@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +31,8 @@ public class CreateProfileActivity extends AppCompatActivity implements AdapterV
 
     private static final String TAG = CreateProfileActivity.class.getSimpleName();
 
-    private EditText nameEditText, mobileEditText, dobEditText, addressEditText;
+    private EditText nameEditText, mobileEditText, addressEditText;
+    private TextView dobTextView;
     private DatePickerDialog datePickerDialog;
     private Spinner bloodGroupSpinner;
     private Button createProfileButton;
@@ -50,7 +52,9 @@ public class CreateProfileActivity extends AppCompatActivity implements AdapterV
 
         //To hide AppBar for fullscreen.
         ActionBar ab = getSupportActionBar();
-        ab.hide();
+        if (ab != null) {
+            ab.hide();
+        }
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -92,13 +96,13 @@ public class CreateProfileActivity extends AppCompatActivity implements AdapterV
 
         nameEditText = findViewById(R.id.create_profile_name_editText);
         mobileEditText = findViewById(R.id.create_profile_mobile_editText);
-        dobEditText = findViewById(R.id.create_profile_dob_editText);
+        dobTextView = findViewById(R.id.create_profile_dob_textView);
         addressEditText = findViewById(R.id.create_profile_address_editText);
         bloodGroupSpinner = findViewById(R.id.create_profile_blood_group_spinner);
         createProfileButton = findViewById(R.id.create_profile_button);
         progressBar = findViewById(R.id.create_profile_progressBar);
 
-        dobEditText.setOnClickListener(new View.OnClickListener() {
+        dobTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // calender class's instance and get current date , month and year from calender
@@ -112,7 +116,7 @@ public class CreateProfileActivity extends AppCompatActivity implements AdapterV
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                dobEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                dobTextView.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -172,17 +176,18 @@ public class CreateProfileActivity extends AppCompatActivity implements AdapterV
         String name = nameEditText.getText().toString().trim();
         String mobile = mobileEditText.getText().toString().trim();
         String address = addressEditText.getText().toString().trim();
-        String dob = dobEditText.getText().toString().trim();
+        String dob = dobTextView.getText().toString().trim();
 
         FirebaseUser user = auth.getCurrentUser();
-        String email = null;
-        if (user != null) {
-            email = user.getEmail().toString();
-        }
+        String email;
 
-        UserInformation userInformation = new UserInformation(name, email, userGender, dob, bloodGroup,
-                mobile, address);
-        databaseReference.child(user.getUid()).setValue(userInformation);
-        Toast.makeText(this, "Profile created successfully", Toast.LENGTH_SHORT).show();
+        if (user != null) {
+            email = user.getEmail();
+
+            UserInformation userInformation = new UserInformation(name, email, userGender, dob, bloodGroup,
+                    mobile, address);
+            databaseReference.child(user.getUid()).setValue(userInformation);
+            Toast.makeText(this, "Profile created successfully", Toast.LENGTH_SHORT).show();
+        }
     }
 }

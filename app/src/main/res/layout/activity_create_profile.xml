@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
             android:gravity="center_horizontal"
-            android:text="Create Profile"
+            android:text="@string/create_profile"
             android:textColor="#000000"
             android:textSize="32sp" />
 
@@ -29,7 +29,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="18dp"
             android:gravity="center_horizontal"
-            android:text="Please enter your personal details to create your profile"
+            android:text="@string/please_enter_your_personal_details_to_create_your_profile"
             android:textColor="#212121"
             android:textSize="12sp" />
 
@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_account"
-            android:hint="Name"
+            android:hint="@string/name"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="14sp" />
@@ -58,7 +58,7 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_gender"
                 android:gravity="center"
-                android:text="Gender: "
+                android:text="@string/gender"
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
@@ -75,21 +75,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="GenderSelected"
-                    android:text="Male" />
+                    android:text="@string/male" />
 
                 <RadioButton
                     android:id="@+id/female_gender_radio_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="GenderSelected"
-                    android:text="Female" />
+                    android:text="@string/female" />
 
                 <RadioButton
                     android:id="@+id/other_gender_radio_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="GenderSelected"
-                    android:text="Other" />
+                    android:text="@string/other" />
             </RadioGroup>
         </LinearLayout>
 
@@ -105,15 +105,16 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_calendar"
                 android:gravity="center"
-                android:text="Date of Birth: "
+                android:text="@string/date_of_birth"
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/create_profile_dob_editText"
+            <TextView
+                android:id="@+id/create_profile_dob_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="DD/MM/YYYY"
+                android:hint="@string/dd_mm_yyyy"
+                android:padding="4dp"
                 android:singleLine="true"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -130,7 +131,7 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_blood_group"
                 android:gravity="center"
-                android:text="Blood Group: "
+                android:text="@string/blood_group"
                 android:textColor="#000000" />
 
             <Spinner
@@ -147,7 +148,7 @@
             android:layout_gravity="center"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_call"
-            android:hint="Enter Your Mobile"
+            android:hint="@string/enter_your_mobile"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="#000000"
@@ -160,7 +161,7 @@
             android:layout_gravity="center"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_address"
-            android:hint="Enter Your Address"
+            android:hint="@string/enter_your_address"
             android:inputType="text"
             android:textColor="#000000"
             android:textSize="14sp" />
@@ -172,7 +173,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="#3F51B5"
-            android:text="Create Profile"
+            android:text="@string/create_profile"
             android:textAllCaps="true"
             android:textColor="#ffffff"
             android:textSize="16sp" />
